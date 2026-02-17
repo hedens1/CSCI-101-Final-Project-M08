@@ -1,0 +1,9 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, world!" << endl;
+    return 0;
+}
+/* When testing my code, I found that my VS code would compile successfully. However, it wouldn't show any output. 
+When running for output, hit control, option, 'n' in order to run and compile with output using an extenstion. */
