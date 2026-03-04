@@ -1,0 +1,73 @@
+#include <iostream> //used for cout and cin
+#include <fstream> //allows to read from external files
+#include <vector> // used to create 2D vectors and other arrays
+#include <sstream> // allows parsing
+using namespace std;
+
+int main()
+{
+    //This part is to verify that the file can be opened to begin with
+    ifstream file("InputData.txt");
+
+    if(!file)
+    {
+        cout << "File did NOT open!" << endl;
+        return 1;
+    }
+        //file validation
+    cout << "File opened successfully!" << endl;
+
+    //variable initialization
+    int x, y;
+    //i needed to use string instead of char because the blocks used were not ASCII characters 
+    string symbol;
+
+    int maxX = 0;
+    int maxY = 0;
+
+    //data storage structure, using a tuple to store the x, symbol, and y values together for each line of input
+    vector<tuple<int,string,int>> data;
+
+    string line;
+
+    //reading and parsing the file by each line
+    while(getline(file, line))
+    {
+        stringstream ss(line);
+
+        if(ss >> x >> symbol >> y)
+        {
+            data.push_back(make_tuple(x, symbol, y));
+
+            if(x > maxX) maxX = x;
+            if(y > maxY) maxY = y;
+        }
+    }
+    // this was to show me before creating the grid what variables were maxed to prove the file was being read correctly
+    cout << "Max X: " << maxX << endl;
+    cout << "Max Y: " << maxY << endl;
+
+    //this was creating the 2D grid based on the max x and y values found in the input data, initializing all cells to a space character
+    vector<vector<string>> grid(maxY + 1, vector<string>(maxX + 1, " "));
+
+    /* this is to fill the grid by iterating through the stored data 
+    it does this by extracting x, y, and symbol values and placing each symbol at it's proper 
+    grid location.*/
+    for(auto item : data) {
+        x = get<0>(item);
+        symbol = get<1>(item);
+        y = get<2>(item);
+        
+        grid[y][x] = symbol; 
+    }
+    
+    //printing the grid and most importantly, flipping the y and x. I found that it printed upside down otherwise...
+    cout << endl;
+    for (int row = maxY; row >= 0; --row) {
+        for (int col = 0; col <= maxX; ++col) {
+            cout << grid[row][col];
+        }
+        cout << endl;
+    }
+    return 0;
+}
