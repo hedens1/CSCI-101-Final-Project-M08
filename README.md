@@ -19,10 +19,12 @@ Within this repository are different folders containing different tasks required
 ---------------------------------------------------------------------------------------
 a.	Program Overview
 i.	This program works by reading coordinate fata from an external file and uses the data that’s been read to construct a 2D grid. Each line of the file read has an x coordinate, a block character that’s either opaque or partially transparent, and a y coordinate. Using this information, my program then determines the max dimensions of the grid and creates a blank 2D array that it goes in an fills with the data parsed from the external file. When it goes to output the information, it shows a hidden message in block letters. The block letters are created using the opaque and transparent blocks provided with the x and y coordinates. 
+
 ii.	My program reads from the “InputData.txt” file that is saved in the same folder as my main application. Each line has a “x symbol y” formatting much like this: 
 a.	87 █ 3
 b.	23 ░ 2
 c.	61 █ 4
+
 iii.	The program works by 
 1.	Opening the external file using ifstream. It checked immediately to validate a successful opening.
 2.	Read the data using getline() and stringstream. For every valid line the x, y, and symbol values are extracted and held in a vector all while updating the maxX and maxY values to determine the size of the grid needed. 
