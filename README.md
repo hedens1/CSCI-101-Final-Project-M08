@@ -16,3 +16,4 @@ Required documents:
 . Github url (optional but I will include) 
 
 Within this repository are different folders containing different tasks required for the project including the initialization of my VS code. 
+---------------------------------------------------------------------------------------
